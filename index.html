@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Keren</title>
+    <!-- Dzakwan Qinthara_1710624052
+     <script src="...tailwindcss.com">: Baris ini memuat framework Tailwind CSS dari CDN (Content Delivery Network). Tailwind adalah framework yang memungkinkan Anda memberi gaya (styling) elemen HTML langsung di dalam atribut class (contoh: bg-gray-900, text-white, rounded-lg).
+
+<link href="...googleapis.com">: Baris ini mengimpor font kustom bernama "Inter" dari layanan Google Fonts. Ini membuat font tersebut tersedia untuk digunakan di seluruh halaman web.
+
+<link href="Style.CSS">: Baris ini menghubungkan file CSS eksternal Anda sendiri yang bernama Style.CSS. Ini digunakan untuk menambahkan gaya kustom yang mungkin tidak dicakup oleh Tailwind CSS. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="Style.CSS" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-sm bg-gray-800 rounded-2xl shadow-2xl p-6 space-y-4">
+        
+        <!-- Ini adalah blok yang menampilkan gambar di bagian atas kalkulator. 
+<img>: Ini adalah tag untuk menampilkan gambar.
+
+id="statusImage": Ini adalah identifier (ID) unik untuk gambar ini. ID ini kemungkinan besar akan digunakan oleh JavaScript (di file Script.js) untuk mengubah gambar secara dinamis, mungkin untuk menampilkan status (misalnya, gambar "error" jika perhitungan salah).
+
+src="...": Ini adalah sumber gambar. Saat ini, ia menggunakan layanan placeholder (placehold.co) untuk menampilkan gambar kotak abu-abu dengan teks "Kalkulator".
+
+class="...": Ini adalah styling dari Tailwind:
+
+w-full: Membuat lebar gambar 100% (memenuhi container-nya).
+
+rounded-lg: Memberi sudut yang membulat pada gambar.
+
+transition-all ...: Menambahkan efek animasi transisi yang halus jika gambar diubah. -->
+        <div>
+            <img id="statusImage" 
+                 src="https://placehold.co/400x100/374151/E5E7EB?text=Kalkulator" 
+                 alt="Status Kalkulator"
+                 class="w-full rounded-lg transition-all duration-300 ease-in-out shadow-inner">
+        </div>
+
+        <!-- Ini adalah bagian terpenting dari antarmuka: layar (display) tempat angka dan hasil perhitungan muncul.
+
+<input type="text">: Elemen ini digunakan sebagai layar. Meskipun ini adalah input field, ia dibuat agar terlihat seperti layar kalkulator.
+
+id="display": Ini adalah ID unik untuk layar. JavaScript akan menggunakan ID ini untuk menulis angka saat tombol ditekan dan menampilkan hasil perhitungan.
+
+readonly: Atribut ini sangat penting. Ini mencegah pengguna mengetik langsung ke layar menggunakan keyboard komputer. Input hanya bisa dimasukkan melalui klik tombol kalkulator.
+
+placeholder="0": Menampilkan teks "0" sebagai placeholder (teks bayangan) saat tidak ada input.
+
+class="...": Styling dari Tailwind untuk membuatnya terlihat seperti layar:
+
+text-right: Teks (angka) akan rata kanan.
+
+text-5xl: Ukuran font dibuat sangat besar.
+
+font-mono: Menggunakan jenis font monospace (seperti mesin ketik), yang khas untuk kalkulator. -->
+        <div class="bg-gray-900 rounded-lg p-4 shadow-inner">
+            <input type="text" id="display" 
+                   class="w-full bg-transparent text-right text-5xl font-mono text-white border-0 outline-none p-2" 
+                   readonly 
+                   placeholder="0">
+        </div>
+
+        <!-- Ini adalah tag <div> pembuka yang berfungsi sebagai kontainer utama untuk semua tombol kalkulator.
+
+class="grid...": Perintah ini menggunakan CSS Grid Layout dari Tailwind.
+
+grid: Mengaktifkan mode Grid.
+
+grid-cols-4: Mengatur semua elemen anak (tombol) di dalamnya agar secara otomatis tersusun dalam 4 kolom yang rapi.
+
+gap-3: Memberikan jarak (spasi) antar tombol, baik secara horizontal maupun vertikal -->
+        <div class="grid grid-cols-4 gap-3">
+            <!-- Ini adalah baris pertama dari tombol kalkulator, yang berisi tombol fungsi (Clear, Delete, Persen) dan operator bagi.
+
+<button ...>: Ini adalah elemen tombol standar yang bisa diklik.
+
+data-value="C": Ini adalah atribut data kustom. JavaScript (di Script.js) akan mendeteksi klik pada tombol ini dan membaca data-value ("C", "DEL", "%", "/") untuk mengetahui nilai atau fungsi apa yang harus dieksekusi.
+
+class="...": Styling dari Tailwind.
+
+bg-red-600: Memberi warna latar merah pada tombol "C" (Clear).
+
+bg-gray-600: Memberi warna abu-abu pada tombol "DEL" dan "%".
+
+bg-blue-600: Memberi warna biru pada tombol operator "/".
+
+hover:bg-red-500: Contoh styling untuk mengubah warna (menjadi sedikit lebih terang) saat mouse diarahkan ke tombol. -->
+            <button data-value="C" class="btn-calc text-2xl font-bold bg-red-600 hover:bg-red-500 rounded-lg p-5 shadow-md text-white">C</button>
+            <button data-value="DEL" class="btn-calc text-2xl font-bold bg-gray-600 hover:bg-gray-500 rounded-lg p-5 shadow-md text-white">DEL</button>
+            <button data-value="%" class="btn-calc text-2xl font-bold bg-gray-600 hover:bg-gray-500 rounded-lg p-5 shadow-md text-white">%</button>
+            <button data-value="/" class="btn-calc text-2xl font-bold bg-blue-600 hover:bg-blue-500 rounded-lg p-5 shadow-md text-white">/</button>
+
+            <!--  Ini adalah baris kedua tombol (angka 7, 8, 9, dan operator kali). Strukturnya sama persis dengan baris sebelumnya, hanya berbeda data-value (untuk angkanya) dan warna. Tombol angka diberi warna abu-abu (bg-gray-700) dan operator diberi warna biru (bg-blue-600).  -->
+            <button data-value="7" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">7</button>
+            <button data-value="8" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">8</button>
+            <button data-value="9" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">9</button>
+            <button data-value="*" class="btn-calc text-2xl font-bold bg-blue-600 hover:bg-blue-500 rounded-lg p-5 shadow-md text-white">*</button>
+
+            <!--  Ini adalah baris ketiga tombol (angka 4, 5, 6, dan operator kurang).  -->
+            <button data-value="4" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">4</button>
+            <button data-value="5" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">5</button>
+            <button data-value="6" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">6</button>
+            <button data-value="-" class="btn-calc text-2xl font-bold bg-blue-600 hover:bg-blue-500 rounded-lg p-5 shadow-md text-white">-</button>
+
+            <!--  Ini adalah baris keempat tombol (angka 1, 2, 3, dan operator tambah).  -->
+            <button data-value="1" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">1</button>
+            <button data-value="2" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">2</button>
+            <button data-value="3" class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">3</button>
+            <button data-value="+" class="btn-calc text-2xl font-bold bg-blue-600 hover:bg-blue-500 rounded-lg p-5 shadow-md text-white">+</button>
+
+            <!--  Tombol "0": Perhatikan kelas col-span-2 pada tombol ini. Karena grid diatur memiliki 4 kolom, perintah col-span-2 (Column Span 2) ini membuat tombol "0" memakan tempat sebanyak 2 kolom. Inilah yang membuat ukurannya dua kali lebih lebar dibanding tombol lainnya. Tombol ".": Tombol untuk desimal (koma). Tombol "=": Tombol "sama dengan" untuk mengeksekusi perhitungan. Diberi warna hijau (bg-green-600) untuk membedakannya.  -->
+            <button data-value="0" class="btn-calc col-span-2 text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">0</button>
+            <button data-value="." class="btn-calc text-2xl font-bold bg-gray-700 hover:bg-gray-600 rounded-lg p-5 shadow-md text-white">.</button>
+            <button data-value="=" class="btn-calc text-2xl font-bold bg-green-600 hover:bg-green-500 rounded-lg p-5 shadow-md text-white">=</button>
+        </div>
+
+    </div>
+
+    <script src="Script.js"></script>
+</body>
+</html>
